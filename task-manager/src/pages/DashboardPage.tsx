@@ -61,10 +61,6 @@ const DashboardPage = () => {
     navigate("/login");
   };
 
-  const handleToggleDark = () => {
-    dispatch(toggleDarkMode());
-  };
-
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <header className="border-b border-gray-200 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80 backdrop-blur">
