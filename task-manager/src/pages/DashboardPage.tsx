@@ -11,7 +11,6 @@ import {
 import type { Task, TaskStatus } from "../store/tasksSlice";
 import TaskCard from "../components/TaskCard";
 import TaskForm from "../components/TaskForm";
-import { toggleDarkMode } from "../store/uiSlice";
 
 type Filter = "all" | TaskStatus;
 
@@ -20,7 +19,6 @@ const DashboardPage = () => {
   const navigate = useNavigate();
   const { username } = useAppSelector((s) => s.auth);
   const { items, loading, error } = useAppSelector((s) => s.tasks);
-  const darkMode = useAppSelector((s) => s.ui.darkMode);
 
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState<Task | null>(null);
