@@ -17,7 +17,6 @@ A frontend-only task management application built with **React + TypeScript**, u
   - Status: `todo`, `in-progress`, `done`
 - Filter tasks by status
 - State persisted via `localStorage`
-- Dark / light mode toggle
 
 ## Tech Stack
 
