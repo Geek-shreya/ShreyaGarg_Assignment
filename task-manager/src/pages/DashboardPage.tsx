@@ -78,13 +78,18 @@ const DashboardPage = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={handleToggleDark}
-              className="px-3 py-1.5 rounded-lg border text-xs"
+              aria-pressed={darkMode}
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+              className="px-3 py-1.5 rounded-lg border text-xs focus:outline-none focus:ring-2 focus:ring-offset-1"
+              type="button"
             >
               {darkMode ? "Light mode" : "Dark mode"}
             </button>
+
             <button
               onClick={handleLogout}
-              className="px-3 py-1.5 rounded-lg bg-red-500 text-white text-xs font-semibold"
+              className="px-3 py-1.5 rounded-lg bg-red-500 text-white text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-offset-1"
+              type="button"
             >
               Logout
             </button>
