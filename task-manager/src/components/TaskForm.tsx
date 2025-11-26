@@ -1,6 +1,7 @@
 import { useState, useEffect} from "react";
 import type { FormEvent } from "react";
 import type { Task, TaskStatus } from "../store/tasksSlice";
+import ConfirmSaveModal from "./ConfirmSAveModal";
 
 interface TaskFormProps {
   initial?: Partial<Task>;
@@ -15,6 +16,8 @@ const TaskForm = ({ initial, onSubmit, onCancel }: TaskFormProps) => {
     (initial?.status as TaskStatus) || "todo"
   );
   const [errors, setErrors] = useState<{ title?: string; description?: string }>({});
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [pendingData, setPendingData] = useState<any>(null);
 
   useEffect(() => {
     setTitle(initial?.title || "");
@@ -33,7 +36,21 @@ const TaskForm = ({ initial, onSubmit, onCancel }: TaskFormProps) => {
   const handleSubmit = (ev: FormEvent) => {
     ev.preventDefault();
     if (!validate()) return;
-    onSubmit({ title: title.trim(), description: description.trim(), status });
+
+    setPendingData({ title: title.trim(), description: description.trim(), status });
+    setShowConfirm(true);
+    // onSubmit({ title: title.trim(), description: description.trim(), status });
+  };
+
+  const handleConfirmSave = () => {
+      onSubmit(pendingData);
+      setPendingData(null);
+      setShowConfirm(false);
+  };  
+
+  const handleCancelSave = () => {
+      setPendingData(null);
+      setShowConfirm(false);
   };
 
   return (
@@ -87,6 +104,10 @@ const TaskForm = ({ initial, onSubmit, onCancel }: TaskFormProps) => {
           Save
         </button>
       </div>
+
+      {showCOnfirm && (
+        <ConfirmSaveModal OnConfirm={handleConfirmSave} OnCancel={handleCancelSave} />
+      )}  
     </form>
   );
 };
